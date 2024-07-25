@@ -1,4 +1,4 @@
-.square {
+.grid {
     width: 80px;
     height: 80px;
     border: 1px solid;
@@ -7,11 +7,12 @@
     cursor: pointer;
 }
 
-.gameboard {
+.gameBoard {
     display: grid;
     grid-template-columns: repeat(3, auto);
     width: 245px;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 #gameContainer {
