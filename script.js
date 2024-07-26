@@ -16,7 +16,7 @@ let options = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let running = false;
 
-startGame();
+startButton.addEventListener("click", startGame);
 
 
 function startGame() {
@@ -49,7 +49,7 @@ function playerChange() {
 
 
 function checkWinner() {
-    
+
 }
 
 
