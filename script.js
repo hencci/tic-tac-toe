@@ -1,7 +1,7 @@
 const grids = document.querySelectorAll(".grid");
 const winText = document.querySelector("#winText");
-const restartBtn = document.querySelector(".restartButton");
-const startButton = document.querySelector(".startButton")
+const restartButton = document.querySelector(".restartButton");
+const startButton = document.querySelector(".startButton");
 const winConditions =  [
     [0, 1, 2],
     [3, 4, 5],
@@ -22,7 +22,8 @@ startGame();
 function startGame() {
     running = true;
     grids.forEach(grid => grid.addEventListener("click", gridClicked));
-
+    restartButton.addEventListener("click", restartGame);
+    winText.textContent = `${currentPlayer}'s turn`;
 }
 
 
@@ -42,7 +43,8 @@ function updateGrid() {
 
 
 function playerChange() {
-
+    currentPlayer = (currentPlayer == "X")? "O" : "X";
+    winText.textContent = `${currentPlayer}'s turn`;
 }
 
 
@@ -52,5 +54,9 @@ function checkWinner() {
 
 
 function restartGame() {
-
+    currentPlayer = "X";
+    options = ["", "", "", "", "", "", "", "", ""];
+    winText.textContent = `${currentPlayer}'s turn`;
+    grids.forEach(grid => grid.textContent = "");
+    running = true;
 }
