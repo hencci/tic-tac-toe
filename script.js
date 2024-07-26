@@ -16,19 +16,28 @@ let options = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let running = false;
 
+startGame();
+
 
 function startGame() {
+    running = true;
+    grids.forEach(grid => grid.addEventListener("click", gridClicked));
 
 }
 
 
 function gridClicked() {
-
+    const cellIndex = this.getAttribute("cellIndex");
+    if(options[cellIndex] != "" || !running){
+        return;
+    }
+    updateGrid(this, cellIndex);
 }
 
 
 function updateGrid() {
-
+    options[index] = currentPlayer;
+    grid.textContent = currentPlayer;
 }
 
 
@@ -43,5 +52,5 @@ function checkWinner() {
 
 
 function restartGame() {
-    
+
 }
