@@ -36,7 +36,7 @@ function gridClicked() {
 }
 
 
-function updateGrid() {
+function updateGrid(grid, index) {
     options[index] = currentPlayer;
     grid.textContent = currentPlayer;
 }
@@ -49,7 +49,7 @@ function playerChange() {
 
 
 function checkWinner() {
-
+    
 }
 
 
