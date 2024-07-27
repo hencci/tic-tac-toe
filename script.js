@@ -49,7 +49,13 @@ function playerChange() {
 
 
 function checkWinner() {
-
+    let won = false;
+    for(let win = 0; win<winConditions.length; win++){
+        const condition = winConditions[win];
+        const gridA = options[condition[0]];
+        const gridB = options[condition[1]];
+        const gridC = options[condition[2]];
+    }
 }
 
 
