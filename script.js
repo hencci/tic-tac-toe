@@ -33,6 +33,7 @@ function gridClicked() {
         return;
     }
     updateGrid(this, cellIndex);
+    checkWinner();
 }
 
 
