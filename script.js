@@ -55,6 +55,26 @@ function checkWinner() {
         const gridA = options[condition[0]];
         const gridB = options[condition[1]];
         const gridC = options[condition[2]];
+
+        if(gridA == "" || gridB == "" || gridC == ""){
+            continue;
+        }
+        if(gridA == gridB && gridB == gridC){
+            won = true;
+            break;
+        }
+    }
+
+    if(won){
+        winText.textContent = `${currentPlayer} wins`;
+        running = false;
+    }
+    else if(!options.includes("")){
+        winText.textContent = "Oops! It's a Draw";
+        running = false;
+    }
+    else{
+        playerChange();
     }
 }
 
