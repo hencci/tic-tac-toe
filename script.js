@@ -2,6 +2,9 @@ const grids = document.querySelectorAll(".grid");
 const winText = document.querySelector("#winText");
 const restartButton = document.querySelector(".restartButton");
 const startButton = document.querySelector(".startButton");
+const player1 = document.querySelector("#player1");
+const player2 = document.querySelector("#player2");
+
 const winConditions =  [
     [0, 1, 2],
     [3, 4, 5],
@@ -13,17 +16,26 @@ const winConditions =  [
     [2, 4, 6]
 ];
 let options = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "X";
+let players = [];
+let currentPlayerIndex = 0;
 let running = false;
 
 startButton.addEventListener("click", startGame);
 
 
+const createPlayer = (playerName, mark) => {
+    return {playerName, mark}
+}
+
 function startGame() {
+    players = [
+        createPlayer(player1.value, "X"),
+        createPlayer(player2.value, "O")
+    ]
     running = true;
     grids.forEach(grid => grid.addEventListener("click", gridClicked));
     restartButton.addEventListener("click", restartGame);
-    winText.textContent = `${currentPlayer}'s turn`;
+    winText.textContent = `${players[currentPlayerIndex].playerName}'s turn`;
 }
 
 
@@ -38,14 +50,14 @@ function gridClicked() {
 
 
 function updateGrid(grid, index) {
-    options[index] = currentPlayer;
-    grid.textContent = currentPlayer;
+    options[index] = players[currentPlayerIndex].mark;
+    grid.textContent = players[currentPlayerIndex].mark;
 }
 
 
 function playerChange() {
-    currentPlayer = (currentPlayer == "X")? "O" : "X";
-    winText.textContent = `${currentPlayer}'s turn`;
+    currentPlayerIndex = (currentPlayerIndex == 0)? 1 : 0;
+    winText.textContent = `${players[currentPlayerIndex].playerName}'s turn`;
 }
 
 
@@ -67,7 +79,7 @@ function checkWinner() {
     }
 
     if(won){
-        winText.textContent = `${currentPlayer} wins`;
+        winText.textContent = `${players[currentPlayerIndex].playerName} wins`;
         running = false;
     }
     else if(!options.includes("")){
@@ -81,9 +93,9 @@ function checkWinner() {
 
 
 function restartGame() {
-    currentPlayer = "X";
+    currentPlayerIndex = 0;
     options = ["", "", "", "", "", "", "", "", ""];
-    winText.textContent = `${currentPlayer}'s turn`;
+    winText.textContent = `${players[currentPlayerIndex].playerName}'s turn`;
     grids.forEach(grid => grid.textContent = "");
     running = true;
 }
